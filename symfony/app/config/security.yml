@@ -1,0 +1,22 @@
+security:
+    encoders:
+        Symfony\Component\Security\Core\User\User:
+            algorithm: bcrypt
+            cost:      13
+
+    providers:
+        in_memory:
+            memory:
+                users:
+                    admin:
+                        password: $2y$13$r6tFFVrGHYs06lNcQ0jhQO73BXGhZjVnHsmBzF.wXND3QScIEJ4/e #a0418000
+                        roles: [ 'ROLE_ADMIN' ]
+
+    firewalls:
+        admin_secured_area:
+            pattern:    ^/admin/
+            http_basic:
+                realm: "Secured Admin Area"
+
+    access_control:
+        - { path: ^/admin/, roles: ROLE_ADMIN }

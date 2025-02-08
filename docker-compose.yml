@@ -1,0 +1,27 @@
+services:
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    platform: linux/amd64
+    ports:
+      - "8000:80"
+    volumes:
+      - ./symfony:/var/www/html
+    depends_on:
+      - db
+
+  db:
+    image: mysql:5.7
+    platform: linux/amd64
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: classic-symfony 
+      MYSQL_USER: user
+      MYSQL_PASSWORD: password
+    volumes:
+      - symfony2_project_db_data:/var/lib/mysql
+      - './my.cnf:/etc/my.cnf'
+
+volumes:
+  symfony2_project_db_data:
