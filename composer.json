@@ -1,0 +1,6 @@
+{
+    "require": {
+        "jms/serializer-bundle": "^5.5",
+        "jms/serializer": "^3.32"
+    }
+}
